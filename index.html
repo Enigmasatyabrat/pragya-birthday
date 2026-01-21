@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌙 Happy Birthday, Pragya! 🌙</title>
+    <title>Happy Birthday, Pragya 🌙</title>
     <style>
         * {
             margin: 0;
@@ -11,35 +11,27 @@
             box-sizing: border-box;
         }
 
-        html, body {
-            width: 100%;
-            height: auto;
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #0a0e27 0%, #16213e 50%, #0f3460 100%);
+            font-family: 'Georgia', 'Poppins', serif;
+            background: linear-gradient(to bottom, #0a0e27, #1a1a2e, #16213e);
+            color: #e8e8e8;
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
         }
 
-        /* Animated starfield background */
         .stars {
             position: fixed;
-            width: 100%;
-            height: 100%;
             top: 0;
             left: 0;
-            z-index: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
+            z-index: 0;
         }
 
         .star {
             position: absolute;
-            width: 2px;
-            height: 2px;
             background: white;
             border-radius: 50%;
             animation: twinkle 3s infinite;
@@ -50,71 +42,105 @@
             50% { opacity: 1; }
         }
 
-        .container {
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        .header {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 20px;
-        }
-
         .moon {
-            font-size: 80px;
-            margin-bottom: 30px;
-            animation: float 3s ease-in-out infinite;
-            display: inline-block;
+            position: fixed;
+            top: 10%;
+            right: 10%;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle at 30% 30%, #fef9e7, #f4e8c1);
+            border-radius: 50%;
+            box-shadow: 0 0 60px rgba(254, 249, 231, 0.5);
+            animation: float 6s ease-in-out infinite;
+            z-index: 1;
         }
 
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-30px); }
+            50% { transform: translateY(-20px); }
         }
 
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #ffc1f3 0%, #a8edea 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-            min-height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 60px 30px;
+            position: relative;
+            z-index: 2;
         }
 
-        .subtitle {
-            font-size: 1.3rem;
-            color: #a8edea;
-            margin-bottom: 40px;
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            color: #f4e8c1;
+            margin-bottom: 10px;
             font-weight: 300;
-            opacity: 0.9;
+            letter-spacing: 3px;
+            min-height: 60px;
+        }
+
+        .header .subtitle {
+            color: #a8edea;
+            font-size: 1em;
+            font-style: italic;
             min-height: 30px;
         }
 
-        .typing-text {
-            min-height: 1.5em;
-            overflow: hidden;
+        .letter {
+            background: rgba(26, 26, 46, 0.6);
+            padding: 40px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(244, 232, 193, 0.1);
+            line-height: 1.8;
+            opacity: 0;
+            animation: fadeIn 1s 0.3s forwards;
+        }
+
+        .letter p {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            color: #d8d8d8;
+            min-height: 1.4em;
+        }
+
+        .letter .opening {
+            font-size: 1.2em;
+            color: #f4e8c1;
+            margin-bottom: 30px;
+        }
+
+        .letter .closing {
+            margin-top: 40px;
+            text-align: right;
+            font-style: italic;
+            color: #a8a8a8;
+            min-height: 1.4em;
+        }
+
+        .quote {
+            text-align: center;
+            font-style: italic;
+            color: #f4e8c1;
+            margin: 40px 0;
+            padding: 20px;
+            border-left: 3px solid rgba(244, 232, 193, 0.3);
+            border-right: 3px solid rgba(244, 232, 193, 0.3);
+            opacity: 0;
+            animation: fadeIn 1s 0.6s forwards;
         }
 
         .cursor {
             display: inline-block;
             width: 2px;
             height: 1em;
-            background: #ffc1f3;
-            margin-left: 5px;
+            background: #f4e8c1;
+            margin-left: 3px;
             animation: blink 0.7s infinite;
         }
 
@@ -123,179 +149,83 @@
             50%, 100% { opacity: 0; }
         }
 
-        .poetry-section {
-            margin-top: 60px;
-            padding: 60px 0;
-        }
-
-        .poetry-box {
-            background: rgba(6, 10, 36, 0.95);
-            border-radius: 20px;
-            padding: 40px;
-            border: 2px solid rgba(255, 193, 243, 0.3);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            margin: 40px 0;
-            animation: slideUp 1s ease-out 0.3s both;
-            text-align: left;
-            max-height: none;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .poetry-content {
-            line-height: 1.9;
-            font-size: 1.05rem;
-            color: #fff;
-            font-weight: 300;
-            text-align: center;
-        }
-
-        .verse {
-            color: #c9e4ff;
-            font-style: italic;
-            margin: 12px 0;
-            display: block;
-        }
-
-        .verse-break {
-            margin: 25px 0;
-        }
-
-        .final-message {
-            margin-top: 60px;
-            margin-bottom: 60px;
-            padding: 40px;
-            background: rgba(6, 10, 36, 0.85);
-            border-radius: 20px;
-            border: 2px solid rgba(255, 193, 243, 0.4);
-            animation: slideUp 1s ease-out 0.6s both;
-        }
-
-        .message-text {
-            font-size: 1.2rem;
-            color: #ffc1f3;
-            margin-bottom: 15px;
-            font-weight: 300;
-        }
-
-        .signature {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: #a8edea;
-            margin-top: 20px;
-        }
-
-        .heart {
-            color: #ff6b9d;
-            animation: heartbeat 1.5s ease-in-out infinite;
-            display: inline-block;
-        }
-
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.3); }
-        }
-
-        .footer {
-            padding: 40px 20px;
-            text-align: center;
-            color: #a8edea;
-            font-size: 0.9rem;
-            opacity: 0.7;
-            margin-top: 40px;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2.3rem;
-                min-height: 60px;
+            .container {
+                padding: 40px 20px;
             }
-            .subtitle {
-                font-size: 1.1rem;
+            
+            .header h1 {
+                font-size: 2em;
             }
-            .poetry-box {
+            
+            .letter {
                 padding: 25px;
-                margin: 30px 0;
             }
-            .poetry-content {
-                font-size: 1rem;
-                line-height: 1.7;
-            }
+            
             .moon {
-                font-size: 60px;
+                width: 80px;
+                height: 80px;
+                top: 5%;
+                right: 5%;
             }
         }
     </style>
 </head>
 <body>
-    <div class="stars" id="starfield"></div>
+    <div class="stars" id="stars"></div>
+    <div class="moon"></div>
     
     <div class="container">
         <div class="header">
-            <div class="moon" >🌙</div>
-            
-            <h1>
-                <span id="titleText" class="typing-text"></span>
-                <span class="cursor" id="titleCursor"></span>
-            </h1>
-            
-            <p class="subtitle">
-                <span id="subtitleText" class="typing-text"></span>
-                <span class="cursor" id="subtitleCursor" style="display: none;"></span>
-            </p>
+            <h1 id="title"></h1>
+            <p class="subtitle" id="subtitle"></p>
         </div>
 
-        <div class="poetry-section">
-            <div class="poetry-box">
-                <div class="poetry-content" id="poetryContent">
-                    <!-- Poetry will be typed here -->
-                </div>
-            </div>
+        <div class="letter" id="letter-content">
+            <p class="opening" id="opening"></p>
+            <p id="para1"></p>
+            <p id="para2"></p>
+            <p id="para3"></p>
+            <p id="para4"></p>
+            <p id="para5"></p>
+            <p id="para6"></p>
+            <p class="closing" id="closing"></p>
         </div>
 
-        <div class="final-message">
-            <p class="message-text" id="finalMessage"></p>
-            <p class="signature" id="signature"></p>
-        </div>
-
-        <div class="footer">
-            Made with <span class="heart">♥</span> for Pragya
-        </div>
+        <div class="quote" id="quote"></div>
     </div>
 
     <script>
-        // Typewriter animation function
-        function typeWriter(element, text, speed = 50, callback = null) {
+        // Create stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = Math.random() * 3 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Typewriter effect
+        function typeWriter(element, text, speed = 50) {
             return new Promise((resolve) => {
                 let index = 0;
-                const originalHTML = element.innerHTML;
                 element.innerHTML = '';
                 
                 function type() {
                     if (index < text.length) {
-                        const char = text[index];
-                        if (char === '<') {
-                            // Handle HTML tags
-                            const endIndex = text.indexOf('>', index);
-                            element.innerHTML += text.substring(index, endIndex + 1);
-                            index = endIndex + 1;
-                        } else {
-                            element.innerHTML += char;
-                        }
+                        element.innerHTML += text.charAt(index);
                         index++;
                         setTimeout(type, speed);
                     } else {
-                        if (callback) callback();
                         resolve();
                     }
                 }
@@ -303,114 +233,34 @@
             });
         }
 
-        // Generate random stars
-        function createStars() {
-            const starfield = document.getElementById('starfield');
-            const starCount = 150;
+        // Main animation sequence
+        async function startAnimation() {
+            await typeWriter(document.getElementById('title'), 'Happy Birthday, Pragya', 60);
+            await typeWriter(document.getElementById('subtitle'), 'To the girl who makes the night sky jealous of her glow', 30);
             
-            for (let i = 0; i < starCount; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.animationDelay = Math.random() * 3 + 's';
-                star.style.opacity = Math.random() * 0.7 + 0.3;
-                starfield.appendChild(star);
-            }
+            const opening = 'Hey,';
+            const para1 = 'I didn\'t know it was your birthday today. Found out by chance, and all I could think was—the moon must\'ve stood still tonight just to meet your gaze.';
+            const para2 = 'You know, I\'ve met a lot of people. Talked to them, laughed with them, forgot them. But you? You stayed. Not because we talk every day or because we\'re still the same kids who played in those school corridors. You stayed because somehow, in all the noise, you were the only one who felt real.';
+            const para3 = 'I remember those days—the stupid games, the long talks about nothing, the way you\'d get lost staring at the sky. And then came the quiet. That separation we never really talked about. Life pulled us in different directions, didn\'t it? I stopped reaching out, stopped trying. Not because I wanted to, but because I thought I should. Someone made me believe it was the right thing to do. And maybe it was. I don\'t even know what love is, honestly. Never did. But I knew what mattered. And you mattered.';
+            const para4 = 'You still do.';
+            const para5 = 'You\'re generous in ways people don\'t even notice. Charming without trying. And your eyes—god, they\'re like entire galaxies. The kind you could fall into and never find your way out. Not that you\'d want to.';
+            const para6 = 'I\'m not saying all this to be dramatic or make this into something it\'s not. You\'re just a friend. But you\'re the best kind of friend. The kind I don\'t need to replace, because honestly, I don\'t think I could. A moon is a moon, even after you\'ve seen a million asteroids.\n\nSo here\'s to you, on your birthday. To the only person from those school days who I still feel I actually know. To someone who made a shit life feel a little less shit, even if they didn\'t know it.\n\nHappy birthday, Pragya. I hope you look at the moon tonight and smile. Because somewhere, I\'m looking at it too, thinking of you.';
+            const closing = '— someone who still remembers';
+            const quoteText = '"Some people just stay with you, even when they\'re not around anymore."';
+
+            await typeWriter(document.getElementById('opening'), opening, 40);
+            await typeWriter(document.getElementById('para1'), para1, 20);
+            await typeWriter(document.getElementById('para2'), para2, 15);
+            await typeWriter(document.getElementById('para3'), para3, 15);
+            await typeWriter(document.getElementById('para4'), para4, 30);
+            await typeWriter(document.getElementById('para5'), para5, 20);
+            await typeWriter(document.getElementById('para6'), para6, 15);
+            await typeWriter(document.getElementById('closing'), closing, 40);
+            await typeWriter(document.getElementById('quote'), quoteText, 25);
         }
 
-        // Main animation sequence
-        async function startAnimations() {
-            const titleText = 'Happy Birthday, Pragya';
-            const subtitleText = 'To the girl who makes the night sky jealous of her glow';
-            
-            const poetryText = `
-                <span class="verse">Tonight the moon is a little softer,</span>
-                <span class="verse">the stars are a little brighter,</span>
-                <span class="verse">as if the whole sky knows</span>
-                <span class="verse">it is your day, Pragya. 🌟</span>
-                <span class="verse-break"></span>
-                
-                <span class="verse">If the moon could speak,</span>
-                <span class="verse">it would borrow your smile,</span>
-                <span class="verse">hang it gently on the horizon,</span>
-                <span class="verse">and call it a new constellation.</span>
-                <span class="verse-break"></span>
-                
-                <span class="verse">You are that quiet wish people make</span>
-                <span class="verse">when they see the first star,</span>
-                <span class="verse">that calm after a long, loud day,</span>
-                <span class="verse">that warm light in a cold galaxy.</span>
-                <span class="verse-break"></span>
-                
-                <span class="verse">May every dream you whisper to the night</span>
-                <span class="verse">find its way back to you,</span>
-                <span class="verse">wrapped in stardust,</span>
-                <span class="verse">shining a little brighter than before.</span>
-                <span class="verse-break"></span>
-                
-                <span class="verse">Keep glowing, moon-child.</span>
-                <span class="verse">The sky looks better with you in it. ✨</span>
-            `;
-            
-            // Show title cursor
-            document.getElementById('titleCursor').style.display = 'inline-block';
-            
-            // Type title
-            await typeWriter(
-                document.getElementById('titleText'),
-                titleText,
-                40,
-                () => {
-                    document.getElementById('titleCursor').style.display = 'none';
-                }
-            );
-            
-            // Show subtitle cursor
-            document.getElementById('subtitleCursor').style.display = 'inline-block';
-            
-            // Type subtitle
-            await typeWriter(
-                document.getElementById('subtitleText'),
-                subtitleText,
-                35,
-                () => {
-                    document.getElementById('subtitleCursor').style.display = 'none';
-                }
-            );
-            
-            // Type poetry
-            await typeWriter(
-                document.getElementById('poetryContent'),
-                poetryText,
-                15
-            );
-            
-            // Type final messages
-            const finalMsg = 'With a heart full of wishes and a sky full of stars,';
-            await typeWriter(
-                document.getElementById('finalMessage'),
-                finalMsg,
-                30
-            );
-            
-            await typeWriter(
-                document.getElementById('signature'),
-                'Happy Birthday, Pragya <span class="heart">♥</span>',
-                40
-            );
-        }
-        
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            createStars();
-            startAnimations();
-        });
-        
-        // Scroll smooth enable for older browsers
-        if (!CSS.supports('scroll-behavior', 'smooth')) {
-            document.documentElement.style.scrollBehavior = 'auto';
-        }
+        // Start animation when page loads
+        document.addEventListener('DOMContentLoaded', startAnimation);
     </script>
 </body>
 </html>
