@@ -11,10 +11,6 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             font-family: 'Georgia', serif;
             background: linear-gradient(to bottom, #0a0e27, #1a1a2e, #16213e);
@@ -24,7 +20,7 @@
             position: relative;
         }
 
-        .stars {
+        .stars-bg {
             position: fixed;
             top: 0;
             left: 0;
@@ -64,6 +60,27 @@
             50% { transform: translateY(-20px); }
         }
 
+        .music-toggle {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            background: rgba(26, 26, 46, 0.8);
+            border: 1px solid rgba(244, 232, 193, 0.3);
+            color: #f4e8c1;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9em;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .music-toggle:hover {
+            background: rgba(26, 26, 46, 0.95);
+            box-shadow: 0 0 20px rgba(244, 232, 193, 0.2);
+        }
+
         .container {
             max-width: 700px;
             margin: 0 auto;
@@ -75,8 +92,6 @@
         .header {
             text-align: center;
             margin-bottom: 50px;
-            opacity: 0;
-            animation: fadeIn 2s forwards;
         }
 
         .header h1 {
@@ -85,12 +100,14 @@
             margin-bottom: 10px;
             font-weight: 300;
             letter-spacing: 3px;
+            min-height: 1.2em;
         }
 
         .header .date {
             color: #a8a8a8;
             font-size: 0.9em;
             font-style: italic;
+            min-height: 1.2em;
         }
 
         .letter {
@@ -100,8 +117,6 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(244, 232, 193, 0.1);
             line-height: 1.8;
-            opacity: 0;
-            animation: fadeIn 2s 0.5s forwards;
         }
 
         .letter p {
@@ -109,6 +124,26 @@
             font-size: 1.1em;
             color: #d8d8d8;
             min-height: 1.5em;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3em;
+        }
+
+        .word {
+            opacity: 0;
+            animation: slideUp 0.6s ease-out forwards;
+            display: inline;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .letter .opening {
@@ -132,12 +167,13 @@
             padding: 20px;
             border-left: 3px solid rgba(244, 232, 193, 0.3);
             border-right: 3px solid rgba(244, 232, 193, 0.3);
-            opacity: 0;
-            animation: fadeIn 2s 1s forwards;
+            min-height: 1.5em;
         }
 
-        @keyframes fadeIn {
-            to { opacity: 1; }
+        .quote .word {
+            opacity: 0;
+            animation: slideUp 0.6s ease-out forwards;
+            display: inline;
         }
 
         @media (max-width: 768px) {
@@ -159,44 +195,43 @@
                 top: 5%;
                 right: 5%;
             }
+
+            .music-toggle {
+                top: 20px;
+                left: 20px;
+                padding: 10px 16px;
+                font-size: 0.85em;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="stars" id="stars"></div>
+    <div class="stars-bg" id="stars"></div>
     <div class="moon"></div>
+
+    <button class="music-toggle" id="musicToggle">🎵 play music</button>
+    <audio id="bgMusic" loop>
+        <source src="aud.mp3" type="audio/mpeg">
+    </audio>
 
     <div class="container">
         <div class="header">
-            <h1>Happy Birthday, Pragya</h1>
-            <p class="date">To the girl who makes the night sky jealous of her glow</p>
+            <h1 id="title"></h1>
+            <p class="date" id="subtitle"></p>
         </div>
 
         <div class="letter">
-            <p class="opening">Hey,</p>
-
-            <p>I didn't know it was your birthday today. Found out by chance, and all I could think was—the moon must've stood still tonight just to meet your gaze.</p>
-
-            <p>You know, I've met a lot of people. Talked to them, laughed with them, forgot them. But you? You stayed. Not because we talk every day or because we're still the same kids who played in those school corridors. You stayed because somehow, in all the noise, you were the only one who felt real.</p>
-
-            <p>I remember those days—the stupid games, the long talks about nothing, the way you'd get lost staring at the sky. And then came the quiet. That separation we never really talked about. Life pulled us in different directions, didn't it? I stopped reaching out, stopped trying. Not because I wanted to, but because I thought I should. Someone made me believe it was the right thing to do. And maybe it was. I don't even know what love is, honestly. Never did. But I knew what mattered. And you mattered.</p>
-
-            <p>You still do.</p>
-
-            <p>You're generous in ways people don't even notice. Charming without trying. And your eyes—god, they're like entire galaxies. The kind you could fall into and never find your way out. Not that you'd want to.</p>
-
-            <p>I'm not saying all this to be dramatic or make this into something it's not. You're just a friend. But you're the best kind of friend. The kind I don't need to replace, because honestly, I don't think I could. A moon is a moon, even after you've seen a million asteroids.</p>
-
-            <p>So here's to you, on your birthday. To the only person from those school days who I still feel I actually know. To someone who made a shit life feel a little less shit, even if they didn't know it.</p>
-
-            <p>Happy birthday, Pragya. I hope you look at the moon tonight and smile. Because somewhere, I'm looking at it too, thinking of you.</p>
-
-            <p class="closing">— someone who still remembers</p>
+            <p class="opening" id="opening"></p>
+            <p id="para1"></p>
+            <p id="para2"></p>
+            <p id="para3"></p>
+            <p id="para4"></p>
+            <p id="para5"></p>
+            <p id="para6"></p>
+            <p class="closing" id="closing"></p>
         </div>
 
-        <div class="quote">
-            "Some people just stay with you, even when they're not around anymore."
-        </div>
+        <div class="quote" id="quote"></div>
     </div>
 
     <script>
@@ -211,6 +246,70 @@
             star.style.animationDelay = Math.random() * 3 + 's';
             starsContainer.appendChild(star);
         }
+
+        const musicToggle = document.getElementById('musicToggle');
+        const bgMusic = document.getElementById('bgMusic');
+        let isPlaying = false;
+
+        musicToggle.addEventListener('click', () => {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicToggle.textContent = '🎵 play music';
+            } else {
+                bgMusic.play();
+                musicToggle.textContent = '🎵 pause music';
+            }
+            isPlaying = !isPlaying;
+        });
+
+        // Text content
+        const content = {
+            title: 'For Pragya',
+            subtitle: 'happy birthday',
+            opening: 'Hey,',
+            para1: 'I didn\'t know it was your birthday today. Found out by chance, and the first thing I thought was—the moon must\'ve paused tonight, just to meet your gaze.',
+            para2: 'We weren\'t especially close, were we? Mostly those in-between school hours, when the place was half-empty and we were just waiting to go home. We didn\'t talk about big things. We just shared time—quietly, without trying to make it anything more.',
+            para3: 'But you were different. Not loudly, not dramatically. Just real in a way that stayed. Even after school ended, after life moved on and most people faded, you didn\'t.',
+            para4: 'I heard you love the moon. I wish I\'d known that back then. Maybe I would\'ve looked up more during those daylight waits. Still, I think you would\'ve understood the silence.',
+            para5: 'I\'m not trying to turn this into something it\'s not. You\'re a friend—just that. And a good one. The kind that doesn\'t need replacing. A moon is still a moon, even after you\'ve seen a thousand other things in the sky.',
+            para6: 'Happy birthday, Pragya. I hope you\'re doing well. And tonight, I hope the moon feels a little closer—as if it leaned in, briefly, to see another quiet universe looking back.',
+            closing: '— from those waiting hours',
+            quote: '"Some people just stay, without asking to."'
+        };
+
+        function createWordSpans(text) {
+            const words = text.split(' ');
+            return words.map(word => `<span class="word">${word}</span>`).join(' ');
+        }
+
+        function animateText(elementId, text, startDelay) {
+            const element = document.getElementById(elementId);
+            element.innerHTML = createWordSpans(text);
+            const words = element.querySelectorAll('.word');
+            let delay = startDelay;
+
+            words.forEach((word, index) => {
+                word.style.animationDelay = delay + 's';
+                delay += 0.05;
+            });
+
+            return delay;
+        }
+
+        // Start animations with staggered timing
+        let currentDelay = 0.5;
+
+        currentDelay = animateText('title', content.title, currentDelay) + 0.2;
+        currentDelay = animateText('subtitle', content.subtitle, currentDelay) + 0.5;
+        currentDelay = animateText('opening', content.opening, currentDelay) + 0.3;
+        currentDelay = animateText('para1', content.para1, currentDelay) + 0.5;
+        currentDelay = animateText('para2', content.para2, currentDelay) + 0.5;
+        currentDelay = animateText('para3', content.para3, currentDelay) + 0.5;
+        currentDelay = animateText('para4', content.para4, currentDelay) + 0.5;
+        currentDelay = animateText('para5', content.para5, currentDelay) + 0.5;
+        currentDelay = animateText('para6', content.para6, currentDelay) + 0.5;
+        currentDelay = animateText('closing', content.closing, currentDelay) + 0.5;
+        animateText('quote', content.quote, currentDelay);
     </script>
 </body>
 </html>
