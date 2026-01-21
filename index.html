@@ -11,14 +11,17 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            width: 100%;
+            height: auto;
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #0a0e27 0%, #16213e 50%, #0f3460 100%);
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
+            overflow-x: hidden;
             position: relative;
         }
 
@@ -30,6 +33,7 @@
             top: 0;
             left: 0;
             z-index: 0;
+            pointer-events: none;
         }
 
         .star {
@@ -49,33 +53,31 @@
         .container {
             position: relative;
             z-index: 1;
-            text-align: center;
             max-width: 900px;
-            width: 90%;
-            padding: 40px;
-            animation: fadeInDown 1s ease-out;
+            margin: 0 auto;
+            padding: 60px 20px;
+            text-align: center;
         }
 
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
         }
 
         .moon {
             font-size: 80px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             animation: float 3s ease-in-out infinite;
+            display: inline-block;
         }
 
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+            50% { transform: translateY(-30px); }
         }
 
         h1 {
@@ -85,9 +87,12 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             letter-spacing: 2px;
-            text-shadow: 0 0 30px rgba(255, 193, 243, 0.5);
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .subtitle {
@@ -96,17 +101,44 @@
             margin-bottom: 40px;
             font-weight: 300;
             opacity: 0.9;
+            min-height: 30px;
+        }
+
+        .typing-text {
+            min-height: 1.5em;
+            overflow: hidden;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1em;
+            background: #ffc1f3;
+            margin-left: 5px;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        .poetry-section {
+            margin-top: 60px;
+            padding: 60px 0;
         }
 
         .poetry-box {
-            background: rgba(6, 10, 36, 0.9);
+            background: rgba(6, 10, 36, 0.95);
             border-radius: 20px;
             padding: 40px;
             border: 2px solid rgba(255, 193, 243, 0.3);
             backdrop-filter: blur(10px);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            margin: 30px 0;
+            margin: 40px 0;
             animation: slideUp 1s ease-out 0.3s both;
+            text-align: left;
+            max-height: none;
         }
 
         @keyframes slideUp {
@@ -120,71 +152,87 @@
             }
         }
 
-        .poetry-box p {
-            line-height: 1.8;
-            font-size: 1.1rem;
+        .poetry-content {
+            line-height: 1.9;
+            font-size: 1.05rem;
             color: #fff;
-            margin: 15px 0;
             font-weight: 300;
+            text-align: center;
         }
 
         .verse {
-            margin: 20px 0;
             color: #c9e4ff;
             font-style: italic;
+            margin: 12px 0;
+            display: block;
         }
 
-        .cta-button {
-            display: inline-block;
-            padding: 15px 40px;
-            margin-top: 30px;
-            background: linear-gradient(135deg, #ffc1f3 0%, #a8edea 100%);
-            color: #0a0e27;
-            text-decoration: none;
-            border-radius: 50px;
+        .verse-break {
+            margin: 25px 0;
+        }
+
+        .final-message {
+            margin-top: 60px;
+            margin-bottom: 60px;
+            padding: 40px;
+            background: rgba(6, 10, 36, 0.85);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 193, 243, 0.4);
+            animation: slideUp 1s ease-out 0.6s both;
+        }
+
+        .message-text {
+            font-size: 1.2rem;
+            color: #ffc1f3;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        .signature {
+            font-size: 1.4rem;
             font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 193, 243, 0.4);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(255, 193, 243, 0.6);
-        }
-
-        .footer {
-            margin-top: 40px;
             color: #a8edea;
-            font-size: 0.95rem;
-            opacity: 0.8;
+            margin-top: 20px;
         }
 
         .heart {
             color: #ff6b9d;
             animation: heartbeat 1.5s ease-in-out infinite;
+            display: inline-block;
         }
 
         @keyframes heartbeat {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+            50% { transform: scale(1.3); }
+        }
+
+        .footer {
+            padding: 40px 20px;
+            text-align: center;
+            color: #a8edea;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 40px;
         }
 
         @media (max-width: 768px) {
             h1 {
-                font-size: 2.5rem;
+                font-size: 2.3rem;
+                min-height: 60px;
             }
             .subtitle {
                 font-size: 1.1rem;
             }
             .poetry-box {
                 padding: 25px;
-                margin: 20px 0;
+                margin: 30px 0;
             }
-            .poetry-box p {
+            .poetry-content {
                 font-size: 1rem;
+                line-height: 1.7;
+            }
+            .moon {
+                font-size: 60px;
             }
         }
     </style>
@@ -193,53 +241,72 @@
     <div class="stars" id="starfield"></div>
     
     <div class="container">
-        <div class="moon">🌙</div>
-        
-        <h1>Happy Birthday, Pragya</h1>
-        <p class="subtitle">To the girl who makes the night sky jealous of her glow</p>
-
-        <div class="poetry-box">
-            <p style="line-height: 1.7; font-size: 1rem; margin: 0;">
-                <span class="verse">Tonight the moon is a little softer,</span><br>
-                <span class="verse">the stars are a little brighter,</span><br>
-                <span class="verse">as if the whole sky knows</span><br>
-                <span class="verse">it is your day, Pragya. 🌟</span><br><br>
-
-                <span class="verse">If the moon could speak,</span><br>
-                <span class="verse">it would borrow your smile,</span><br>
-                <span class="verse">hang it gently on the horizon,</span><br>
-                <span class="verse">and call it a new constellation.</span><br><br>
-
-                <span class="verse">You are that quiet wish people make</span><br>
-                <span class="verse">when they see the first star,</span><br>
-                <span class="verse">that calm after a long, loud day,</span><br>
-                <span class="verse">that warm light in a cold galaxy.</span><br><br>
-
-                <span class="verse">May every dream you whisper to the night</span><br>
-                <span class="verse">find its way back to you,</span><br>
-                <span class="verse">wrapped in stardust,</span><br>
-                <span class="verse">shining a little brighter than before.</span><br><br>
-
-                <span class="verse">Keep glowing, moon-child.</span><br>
-                <span class="verse">The sky looks better with you in it. ✨</span>
+        <div class="header">
+            <div class="moon" >🌙</div>
+            
+            <h1>
+                <span id="titleText" class="typing-text"></span>
+                <span class="cursor" id="titleCursor"></span>
+            </h1>
+            
+            <p class="subtitle">
+                <span id="subtitleText" class="typing-text"></span>
+                <span class="cursor" id="subtitleCursor" style="display: none;"></span>
             </p>
         </div>
 
-        <div style="margin-top: 30px;">
-            <p style="font-size: 1.2rem; color: #ffc1f3; margin-bottom: 15px;">
-                With a heart full of wishes and a sky full of stars,
-            </p>
-            <p style="font-size: 1.3rem; font-weight: 600; color: #a8edea;">
-                Happy Birthday, Pragya <span class="heart">♥</span>
-            </p>
+        <div class="poetry-section">
+            <div class="poetry-box">
+                <div class="poetry-content" id="poetryContent">
+                    <!-- Poetry will be typed here -->
+                </div>
+            </div>
+        </div>
+
+        <div class="final-message">
+            <p class="message-text" id="finalMessage"></p>
+            <p class="signature" id="signature"></p>
+        </div>
+
+        <div class="footer">
+            Made with <span class="heart">♥</span> for Pragya
         </div>
     </div>
 
     <script>
+        // Typewriter animation function
+        function typeWriter(element, text, speed = 50, callback = null) {
+            return new Promise((resolve) => {
+                let index = 0;
+                const originalHTML = element.innerHTML;
+                element.innerHTML = '';
+                
+                function type() {
+                    if (index < text.length) {
+                        const char = text[index];
+                        if (char === '<') {
+                            // Handle HTML tags
+                            const endIndex = text.indexOf('>', index);
+                            element.innerHTML += text.substring(index, endIndex + 1);
+                            index = endIndex + 1;
+                        } else {
+                            element.innerHTML += char;
+                        }
+                        index++;
+                        setTimeout(type, speed);
+                    } else {
+                        if (callback) callback();
+                        resolve();
+                    }
+                }
+                type();
+            });
+        }
+
         // Generate random stars
         function createStars() {
             const starfield = document.getElementById('starfield');
-            const starCount = 100;
+            const starCount = 150;
             
             for (let i = 0; i < starCount; i++) {
                 const star = document.createElement('div');
@@ -247,21 +314,103 @@
                 star.style.left = Math.random() * 100 + '%';
                 star.style.top = Math.random() * 100 + '%';
                 star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.opacity = Math.random() * 0.7 + 0.3;
                 starfield.appendChild(star);
             }
         }
 
-        // Add some interactivity
-        const container = document.querySelector('.container');
-        container.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.02)';
-        });
-        container.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1)';
-        });
-
+        // Main animation sequence
+        async function startAnimations() {
+            const titleText = 'Happy Birthday, Pragya';
+            const subtitleText = 'To the girl who makes the night sky jealous of her glow';
+            
+            const poetryText = `
+                <span class="verse">Tonight the moon is a little softer,</span>
+                <span class="verse">the stars are a little brighter,</span>
+                <span class="verse">as if the whole sky knows</span>
+                <span class="verse">it is your day, Pragya. 🌟</span>
+                <span class="verse-break"></span>
+                
+                <span class="verse">If the moon could speak,</span>
+                <span class="verse">it would borrow your smile,</span>
+                <span class="verse">hang it gently on the horizon,</span>
+                <span class="verse">and call it a new constellation.</span>
+                <span class="verse-break"></span>
+                
+                <span class="verse">You are that quiet wish people make</span>
+                <span class="verse">when they see the first star,</span>
+                <span class="verse">that calm after a long, loud day,</span>
+                <span class="verse">that warm light in a cold galaxy.</span>
+                <span class="verse-break"></span>
+                
+                <span class="verse">May every dream you whisper to the night</span>
+                <span class="verse">find its way back to you,</span>
+                <span class="verse">wrapped in stardust,</span>
+                <span class="verse">shining a little brighter than before.</span>
+                <span class="verse-break"></span>
+                
+                <span class="verse">Keep glowing, moon-child.</span>
+                <span class="verse">The sky looks better with you in it. ✨</span>
+            `;
+            
+            // Show title cursor
+            document.getElementById('titleCursor').style.display = 'inline-block';
+            
+            // Type title
+            await typeWriter(
+                document.getElementById('titleText'),
+                titleText,
+                40,
+                () => {
+                    document.getElementById('titleCursor').style.display = 'none';
+                }
+            );
+            
+            // Show subtitle cursor
+            document.getElementById('subtitleCursor').style.display = 'inline-block';
+            
+            // Type subtitle
+            await typeWriter(
+                document.getElementById('subtitleText'),
+                subtitleText,
+                35,
+                () => {
+                    document.getElementById('subtitleCursor').style.display = 'none';
+                }
+            );
+            
+            // Type poetry
+            await typeWriter(
+                document.getElementById('poetryContent'),
+                poetryText,
+                15
+            );
+            
+            // Type final messages
+            const finalMsg = 'With a heart full of wishes and a sky full of stars,';
+            await typeWriter(
+                document.getElementById('finalMessage'),
+                finalMsg,
+                30
+            );
+            
+            await typeWriter(
+                document.getElementById('signature'),
+                'Happy Birthday, Pragya <span class="heart">♥</span>',
+                40
+            );
+        }
+        
         // Initialize
-        document.addEventListener('DOMContentLoaded', createStars);
+        document.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            startAnimations();
+        });
+        
+        // Scroll smooth enable for older browsers
+        if (!CSS.supports('scroll-behavior', 'smooth')) {
+            document.documentElement.style.scrollBehavior = 'auto';
+        }
     </script>
 </body>
 </html>
