@@ -3,17 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday, Pragya 🌙</title>
+    <title>For Pragya</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        html, body {
-            width: 100%;
-            height: 100%;
         }
 
         body {
@@ -32,7 +27,6 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 0;
         }
 
         .star {
@@ -71,15 +65,13 @@
             padding: 60px 30px;
             position: relative;
             z-index: 2;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
         }
 
         .header {
             text-align: center;
             margin-bottom: 50px;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
         }
 
         .header h1 {
@@ -88,14 +80,12 @@
             margin-bottom: 10px;
             font-weight: 300;
             letter-spacing: 3px;
-            min-height: 60px;
         }
 
-        .header .subtitle {
-            color: #a8edea;
-            font-size: 1em;
+        .header .date {
+            color: #a8a8a8;
+            font-size: 0.9em;
             font-style: italic;
-            min-height: 30px;
         }
 
         .letter {
@@ -105,14 +95,14 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(244, 232, 193, 0.1);
             line-height: 1.8;
-            margin: 40px 0;
+            opacity: 0;
+            animation: fadeIn 2s 0.5s forwards;
         }
 
         .letter p {
             margin-bottom: 20px;
             font-size: 1.1em;
             color: #d8d8d8;
-            min-height: 1.6em;
         }
 
         .letter .opening {
@@ -136,6 +126,12 @@
             padding: 20px;
             border-left: 3px solid rgba(244, 232, 193, 0.3);
             border-right: 3px solid rgba(244, 232, 193, 0.3);
+            opacity: 0;
+            animation: fadeIn 2s 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
         }
 
         @media (max-width: 768px) {
@@ -166,26 +162,38 @@
     
     <div class="container">
         <div class="header">
-            <h1 id="title"></h1>
-            <p class="subtitle" id="subtitle"></p>
+            <h1>For Pragya</h1>
+            <p class="date">a letter i should've written long ago</p>
         </div>
 
-        <div class="letter" id="letter-content">
-            <p class="opening" id="opening"></p>
-            <p id="para1"></p>
-            <p id="para2"></p>
-            <p id="para3"></p>
-            <p id="para4"></p>
-            <p id="para5"></p>
-            <p id="para6"></p>
-            <p class="closing" id="closing"></p>
+        <div class="letter">
+            <p class="opening">Hey,</p>
+
+            <p>I didn't know it was your birthday today. Found out by chance, and all I could think was—the moon must've stood still tonight just to meet your gaze.</p>
+
+            <p>You know, I've met a lot of people. Talked to them, laughed with them, forgot them. But you? You stayed. Not because we talk every day or because we're still the same kids who played in those school corridors. You stayed because somehow, in all the noise, you were the only one who felt real.</p>
+
+            <p>I remember those days—the stupid games, the long talks about nothing, the way you'd get lost staring at the sky. And then came the quiet. That separation we never really talked about. Life pulled us in different directions, didn't it? I stopped reaching out, stopped trying. Not because I wanted to, but because I thought I should. Someone made me believe it was the right thing to do. And maybe it was. I don't even know what love is, honestly. Never did. But I knew what mattered. And you mattered.</p>
+
+            <p>You still do.</p>
+
+            <p>You're generous in ways people don't even notice. Charming without trying. And your eyes—god, they're like entire galaxies. The kind you could fall into and never find your way out. Not that you'd want to.</p>
+
+            <p>I'm not saying all this to be dramatic or make this into something it's not. You're just a friend. But you're the best kind of friend. The kind I don't need to replace, because honestly, I don't think I could. A moon is a moon, even after you've seen a million asteroids.</p>
+
+            <p>So here's to you, on your birthday. To the only person from those school days who I still feel I actually know. To someone who made a shit life feel a little less shit, even if they didn't know it.</p>
+
+            <p>Happy birthday, Pragya. I hope you look at the moon tonight and smile. Because somewhere, I'm looking at it too, thinking of you.</p>
+
+            <p class="closing">— someone who still remembers</p>
         </div>
 
-        <div class="quote" id="quote"></div>
+        <div class="quote">
+            "Some people just stay with you, even when they're not around anymore."
+        </div>
     </div>
 
     <script>
-        // Create stars
         const starsContainer = document.getElementById('stars');
         for (let i = 0; i < 100; i++) {
             const star = document.createElement('div');
@@ -197,54 +205,6 @@
             star.style.animationDelay = Math.random() * 3 + 's';
             starsContainer.appendChild(star);
         }
-
-        // Typewriter effect using textContent
-        function typeWriter(element, text, speed = 50) {
-            return new Promise((resolve) => {
-                let index = 0;
-                element.textContent = '';
-                
-                function type() {
-                    if (index < text.length) {
-                        element.textContent += text.charAt(index);
-                        index++;
-                        setTimeout(type, speed);
-                    } else {
-                        resolve();
-                    }
-                }
-                type();
-            });
-        }
-
-        // Main animation sequence
-        async function startAnimation() {
-            await typeWriter(document.getElementById('title'), 'Happy Birthday, Pragya', 60);
-            await typeWriter(document.getElementById('subtitle'), 'To the girl who makes the night sky jealous of her glow', 30);
-            
-            const opening = 'Hey,';
-            const para1 = 'I didn\'t know it was your birthday today. Found out by chance, and all I could think was—the moon must\'ve stood still tonight just to meet your gaze.';
-            const para2 = 'You know, I\'ve met a lot of people. Talked to them, laughed with them, forgot them. But you? You stayed. Not because we talk every day or because we\'re still the same kids who played in those school corridors. You stayed because somehow, in all the noise, you were the only one who felt real.';
-            const para3 = 'I remember those days—the stupid games, the long talks about nothing, the way you\'d get lost staring at the sky. And then came the quiet. That separation we never really talked about. Life pulled us in different directions, didn\'t it? I stopped reaching out, stopped trying. Not because I wanted to, but because I thought I should. Someone made me believe it was the right thing to do. And maybe it was. I don\'t even know what love is, honestly. Never did. But I knew what mattered. And you mattered.';
-            const para4 = 'You still do.';
-            const para5 = 'You\'re generous in ways people don\'t even notice. Charming without trying. And your eyes—god, they\'re like entire galaxies. The kind you could fall into and never find your way out. Not that you\'d want to.';
-            const para6 = 'I\'m not saying all this to be dramatic or make this into something it\'s not. You\'re just a friend. But you\'re the best kind of friend. The kind I don\'t need to replace, because honestly, I don\'t think I could. A moon is a moon, even after you\'ve seen a million asteroids.\n\nSo here\'s to you, on your birthday. To the only person from those school days who I still feel I actually know. To someone who made a shit life feel a little less shit, even if they didn\'t know it.\n\nHappy birthday, Pragya. I hope you look at the moon tonight and smile. Because somewhere, I\'m looking at it too, thinking of you.';
-            const closing = '— someone who still remembers';
-            const quoteText = '"Some people just stay with you, even when they\'re not around anymore."';
-
-            await typeWriter(document.getElementById('opening'), opening, 40);
-            await typeWriter(document.getElementById('para1'), para1, 20);
-            await typeWriter(document.getElementById('para2'), para2, 15);
-            await typeWriter(document.getElementById('para3'), para3, 15);
-            await typeWriter(document.getElementById('para4'), para4, 30);
-            await typeWriter(document.getElementById('para5'), para5, 20);
-            await typeWriter(document.getElementById('para6'), para6, 15);
-            await typeWriter(document.getElementById('closing'), closing, 40);
-            await typeWriter(document.getElementById('quote'), quoteText, 25);
-        }
-
-        // Start animation when page loads
-        document.addEventListener('DOMContentLoaded', startAnimation);
     </script>
 </body>
 </html>
